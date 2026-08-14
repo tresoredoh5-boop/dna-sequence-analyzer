@@ -78,6 +78,18 @@ def translate(rna_sequence):
         protein += amino_acid
     return protein
 
+def reverse_complement(sequence):
+    """
+    Retourne le brin complémentaire inverse d'une séquence ADN.
+    """
+    sequence = sequence.upper()
+    complement_map = {"A": "T", "T": "A", "G": "C", "C": "G"}
+
+    complement = "".join(complement_map.get(base, "N") for base in sequence)
+    reversed_complement = complement[::-1]
+
+    return reversed_complement
+
 seqs = read_fasta("test.fasta")
 for name, seq in seqs.items():
     print(name, "->", seq)
@@ -85,3 +97,4 @@ for name, seq in seqs.items():
     rna = transcribe(seq)
     print("ARN:", rna)
     print("Protéine:", translate(rna))
+    print("Brin complémentaire inverse:", reverse_complement(seq))

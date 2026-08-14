@@ -17,8 +17,10 @@ outputs against manual biological calculations.
 1. Parse a FASTA file into sequence records
 2. Calculate GC content (%)
 3. Transcribe DNA into RNA (T → U)
-4. Translate RNA into a protein sequence using the standard genetic code,
+4. Translate RNA into a protein sequence using the standard
+genetic code,
    stopping at the first stop codon
+5. Compute the reverse complement of a DNA sequence
 
 ## How to run
 
@@ -38,12 +40,13 @@ Protéine: MGYS
 ## Limitations
 
 - Single reading frame only (no frameshift handling)
-- No handling of ambiguous bases (N, etc.)
-- No support for reverse complement (planned)
+- No handling of ambiguous bases beyond simple substitution 
+with "N"
+- No motif search yet (planned)
+
 
 ## Next steps
 
-- Add reverse complement function
 - Add motif search
 - Compare outputs with Biopython for validation
 
