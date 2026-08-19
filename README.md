@@ -17,10 +17,10 @@ outputs against manual biological calculations.
 1. Parse a FASTA file into sequence records
 2. Calculate GC content (%)
 3. Transcribe DNA into RNA (T → U)
-4. Translate RNA into a protein sequence using the standard
-genetic code,
+4. Translate RNA into a protein sequence using the standard genetic code,
    stopping at the first stop codon
 5. Compute the reverse complement of a DNA sequence
+6. Find all positions of a given motif in a sequence (including overlaps)
 
 ## How to run
 
@@ -35,20 +35,19 @@ sequence_2 -> ATGGGCTATAGCTA
 GC content: 42.86 %
 ARN: AUGGGCUAUAGCUA
 Protéine: MGYS
+Brin complémentaire inverse: TAGCTATAGCCCAT
+Positions du motif 'ATG': [0]
 \`\`\`
 
 ## Limitations
 
 - Single reading frame only (no frameshift handling)
-- No handling of ambiguous bases beyond simple substitution 
-with "N"
-- No motif search yet (planned)
-
+- No handling of ambiguous bases beyond simple substitution with "N"
 
 ## Next steps
 
-- Add motif search
 - Compare outputs with Biopython for validation
+- Add unit tests
 
 ## Author
 

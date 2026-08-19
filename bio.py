@@ -90,6 +90,21 @@ def reverse_complement(sequence):
 
     return reversed_complement
 
+def find_motif(sequence, motif):
+    """
+    Retourne la liste des positions (index 0-based) où le motif
+    apparaît dans la séquence. Gère les occurrences qui se chevauchent.
+    """
+    sequence = sequence.upper()
+    motif = motif.upper()
+    positions = []
+
+    for i in range(len(sequence) - len(motif) + 1):
+        if sequence[i:i + len(motif)] == motif:
+            positions.append(i)
+
+    return positions
+
 seqs = read_fasta("test.fasta")
 for name, seq in seqs.items():
     print(name, "->", seq)
@@ -98,3 +113,4 @@ for name, seq in seqs.items():
     print("ARN:", rna)
     print("Protéine:", translate(rna))
     print("Brin complémentaire inverse:", reverse_complement(seq))
+    print("Positions du motif 'ATG':", find_motif(seq, "ATG"))
