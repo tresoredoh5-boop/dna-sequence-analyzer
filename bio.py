@@ -38,12 +38,14 @@ def gc_content(sequence):
     gc_percent = (g_count + c_count) / total * 100
     return round(gc_percent, 2)
 
+
 def transcribe(sequence):
     """
     Transcrit une séquence ADN en ARN (remplace T par U).
     """
     sequence = sequence.upper()
     return sequence.replace("T", "U")
+
 
 CODON_TABLE = {
     "UUU": "F", "UUC": "F", "UUA": "L", "UUG": "L",
@@ -64,6 +66,7 @@ CODON_TABLE = {
     "GGU": "G", "GGC": "G", "GGA": "G", "GGG": "G",
 }
 
+
 def translate(rna_sequence):
     """
     Traduit une séquence ARN en protéine, codon par codon.
@@ -78,6 +81,7 @@ def translate(rna_sequence):
         protein += amino_acid
     return protein
 
+
 def reverse_complement(sequence):
     """
     Retourne le brin complémentaire inverse d'une séquence ADN.
@@ -89,6 +93,7 @@ def reverse_complement(sequence):
     reversed_complement = complement[::-1]
 
     return reversed_complement
+
 
 def find_motif(sequence, motif):
     """
@@ -105,6 +110,35 @@ def find_motif(sequence, motif):
 
     return positions
 
+
+def describe(values):
+    """
+    Calcule moyenne, médiane, variance et écart-type d'une liste de nombres.
+    """
+    n = len(values)
+    if n == 0:
+        return None
+
+    mean = sum(values) / n
+
+    sorted_values = sorted(values)
+    mid = n // 2
+    if n % 2 == 0:
+        median = (sorted_values[mid - 1] + sorted_values[mid]) / 2
+    else:
+        median = sorted_values[mid]
+
+    variance = sum((x - mean) ** 2 for x in values) / n
+    std_dev = variance ** 0.5
+
+    return {
+        "mean": round(mean, 2),
+        "median": round(median, 2),
+        "variance": round(variance, 2),
+        "std_dev": round(std_dev, 2),
+    }
+
+
 seqs = read_fasta("test.fasta")
 for name, seq in seqs.items():
     print(name, "->", seq)
@@ -114,3 +148,7 @@ for name, seq in seqs.items():
     print("Protéine:", translate(rna))
     print("Brin complémentaire inverse:", reverse_complement(seq))
     print("Positions du motif 'ATG':", find_motif(seq, "ATG"))
+
+gc_values = [gc_content(seq) for seq in seqs.values()]
+print("\nStatistiques sur le GC content de toutes les séquences:")
+print(describe(gc_values))
