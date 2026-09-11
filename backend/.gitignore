@@ -1,0 +1,35 @@
+# --- Environnements virtuels Python ---
+.venv/
+venv/
+env/
+
+# --- Fichiers Python compilés / cache ---
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+# --- Outils de test et couverture ---
+.pytest_cache/
+.coverage
+htmlcov/
+
+# --- VS Code ---
+.vscode/
+
+# --- Variables d'environnement / secrets ---
+.env
+.env.local
+
+# --- Fichiers système ---
+.DS_Store
+Thumbs.db
+
+# --- Distribution / build Python ---
+build/
+dist/
+*.egg-info/
+
+# --- Fichiers temporaires ---
+*.log
+*.tmp
